@@ -69,10 +69,10 @@ p4.
 		{
 			var p = particles[i];
 
-			ctx.save();
-			ctx.translate(rounded(p.pt1.x +p.width*.5), rounded(p.pt2.y +p.height*.5));
-			ctx.rotate(rounded(p.rotation));
-			ctx.translate(rounded(-(p.pt1.x +p.width*.5)), rounded(-(p.pt2.y +p.height*.5)));
+			//ctx.save();
+			//ctx.translate(rounded(p.pt1.x +p.width*.5), rounded(p.pt2.y +p.height*.5));
+			//ctx.rotate(rounded(p.rotation));
+			//ctx.translate(rounded(-(p.pt1.x +p.width*.5)), rounded(-(p.pt2.y +p.height*.5)));
 
 			ctx.moveTo(rounded(p.pt1.x), rounded(p.pt1.y));
 			ctx.lineTo(rounded(p.pt2.x), rounded(p.pt2.y));
@@ -80,7 +80,7 @@ p4.
 			ctx.lineTo(rounded(p.pt4.x), rounded(p.pt4.y));
 			ctx.fill();
 
-			ctx.restore();
+			//ctx.restore();
 		}
 
 		update();
@@ -102,19 +102,7 @@ p4.
 
 			p.rotation += p.rotationSpeed;
 
-			p.pt1.x = rounded( p.pt1.x + xIncrement );
-			p.pt1.y = rounded( p.pt1.y + yIncrement );
-
-			p.pt2.x = rounded( p.pt2.x + xIncrement );
-			p.pt2.y = rounded( p.pt2.y + yIncrement );
-
-			p.pt3.x = rounded( p.pt3.x + xIncrement );
-			p.pt3.y = rounded( p.pt3.y + yIncrement );
-
-			p.pt4.x = rounded( p.pt4.x + xIncrement );
-			p.pt4.y = rounded( p.pt4.y + yIncrement );
-
-			/*p.pt1.x += xIncrement;
+			p.pt1.x += xIncrement;
 			p.pt1.y += yIncrement;
 
 			p.pt2.x += xIncrement;
@@ -124,7 +112,7 @@ p4.
 			p.pt3.y += yIncrement;
 
 			p.pt4.x += xIncrement;
-			p.pt4.y += yIncrement;*/
+			p.pt4.y += yIncrement;
 
 			if (p.pt1.x > canvas.width+5 || p.pt1.x +p.width < -5 || min(p.pt1.y, p.pt2.y) > canvas.height+5)
 			{
@@ -132,7 +120,7 @@ p4.
 				p.pt1.y = -p.height *1.5;
 
 				p.pt2.x = p.pt1.x +rndm()*particleWith +1;
-				p.pt2.y = p.pt1.y -rndm()*particleWith
+				p.pt2.y = p.pt1.y -rndm()*particleWith;
 
 				p.pt3.x = p.pt2.x +rndm()*particleWith +1;
 				p.pt3.y = p.pt2.y +rndm()*particleHeight;
