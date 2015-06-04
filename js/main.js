@@ -29,15 +29,16 @@ window.onload = function ()
 p4.
 
 */
+
 	for (var i = 0; i < maxParticles; i++)
 	{
-		var startX = (rndm()*canvas.width +.5) | 0;
-		var startY = (rndm()*canvas.height +.5) | 0;
+		var startX = rounded( rndm()*canvas.width );
+		var startY = rounded( rndm()*canvas.height );
 
 		var p1 = {x:startX,  y:startY};
-		var p2 = {x:p1.x +rndm()*particleWith +1,     y:p1.y -rndm()*particleWith};
-		var p3 = {x:p2.x +rndm()*particleWith +1,     y:p2.y +rndm()*particleHeight};
-		var p4 = {x:p3.x -(rndm()*particleWith +1),   y:p3.y +rndm()*particleWith};
+		var p2 = {x:rounded( p1.x +rndm()*particleWith +1  ),     y:rounded( p1.y -rndm()*particleWith   )};
+		var p3 = {x:rounded( p2.x +rndm()*particleWith +1  ),     y:rounded( p2.y +rndm()*particleHeight )};
+		var p4 = {x:rounded( p3.x -(rndm()*particleWith +1 )),    y:rounded( p3.y +rndm()*particleWith   )};
 
 		particles.push({
 			x: startX, // use midpoint instead?
@@ -69,14 +70,14 @@ p4.
 			var p = particles[i];
 
 			ctx.save();
-			ctx.translate(p.pt1.x +p.width*.5, p.pt2.y +p.height*.5);
-			ctx.rotate(p.rotation);
-			ctx.translate(-(p.pt1.x +p.width*.5), -(p.pt2.y +p.height*.5));
+			ctx.translate(rounded(p.pt1.x +p.width*.5), rounded(p.pt2.y +p.height*.5));
+			ctx.rotate(rounded(p.rotation));
+			ctx.translate(rounded(-(p.pt1.x +p.width*.5)), rounded(-(p.pt2.y +p.height*.5)));
 
-			ctx.moveTo(p.pt1.x, p.pt1.y);
-			ctx.lineTo(p.pt2.x, p.pt2.y);
-			ctx.lineTo(p.pt3.x, p.pt3.y);
-			ctx.lineTo(p.pt4.x, p.pt4.y);
+			ctx.moveTo(rounded(p.pt1.x), rounded(p.pt1.y));
+			ctx.lineTo(rounded(p.pt2.x), rounded(p.pt2.y));
+			ctx.lineTo(rounded(p.pt3.x), rounded(p.pt3.y));
+			ctx.lineTo(rounded(p.pt4.x), rounded(p.pt4.y));
 			ctx.fill();
 
 			ctx.restore();
@@ -101,7 +102,19 @@ p4.
 
 			p.rotation += p.rotationSpeed;
 
-			p.pt1.x += xIncrement;
+			p.pt1.x = rounded( p.pt1.x + xIncrement );
+			p.pt1.y = rounded( p.pt1.y + yIncrement );
+
+			p.pt2.x = rounded( p.pt2.x + xIncrement );
+			p.pt2.y = rounded( p.pt2.y + yIncrement );
+
+			p.pt3.x = rounded( p.pt3.x + xIncrement );
+			p.pt3.y = rounded( p.pt3.y + yIncrement );
+
+			p.pt4.x = rounded( p.pt4.x + xIncrement );
+			p.pt4.y = rounded( p.pt4.y + yIncrement );
+
+			/*p.pt1.x += xIncrement;
 			p.pt1.y += yIncrement;
 
 			p.pt2.x += xIncrement;
@@ -111,7 +124,7 @@ p4.
 			p.pt3.y += yIncrement;
 
 			p.pt4.x += xIncrement;
-			p.pt4.y += yIncrement;
+			p.pt4.y += yIncrement;*/
 
 			if (p.pt1.x > canvas.width+5 || p.pt1.x +p.width < -5 || min(p.pt1.y, p.pt2.y) > canvas.height+5)
 			{
@@ -136,6 +149,9 @@ p4.
 			}
 		}
 	}
+
+	// turns a floating pt number into an integer quickly
+	function rounded(n) { return (n+.5) | 0;}
 	
 	setInterval(draw, 30);
 }
