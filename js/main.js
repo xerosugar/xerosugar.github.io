@@ -9,6 +9,12 @@ window.onload = function ()
 	var particles = [];
 	var particleWith = 7;
 	var particleHeight = 23;
+	var rndm = Math.random;
+	var abs = Math.abs;
+	var min = Math.min;
+	var max = Math.max;
+	var sin = Math.sin;
+	var cos = Math.cos;
 
 	canvas.width = canvas.offsetWidth;
 	canvas.height = canvas.offsetHeight;
@@ -25,13 +31,13 @@ p4.
 */
 	for (var i = 0; i < maxParticles; i++)
 	{
-		var startX = Math.random()*canvas.width;
-		var startY = Math.random()*canvas.height;
+		var startX = (rndm()*canvas.width +.5) | 0;
+		var startY = (rndm()*canvas.height +.5) | 0;
 
 		var p1 = {x:startX,  y:startY};
-		var p2 = {x:p1.x +Math.random()*particleWith +1,     y:p1.y -Math.random()*particleWith};
-		var p3 = {x:p2.x +Math.random()*particleWith +1,     y:p2.y +Math.random()*particleHeight};
-		var p4 = {x:p3.x -(Math.random()*particleWith +1),   y:p3.y +Math.random()*particleWith};
+		var p2 = {x:p1.x +rndm()*particleWith +1,     y:p1.y -rndm()*particleWith};
+		var p3 = {x:p2.x +rndm()*particleWith +1,     y:p2.y +rndm()*particleHeight};
+		var p4 = {x:p3.x -(rndm()*particleWith +1),   y:p3.y +rndm()*particleWith};
 
 		particles.push({
 			x: startX, // use midpoint instead?
@@ -40,12 +46,12 @@ p4.
 			pt2: p2,
 			pt3: p3,
 			pt4: p4,
-			width:Math.abs(Math.min(p1.x, p4.x) -Math.max(p2.x, p3.x)),
-			height:Math.abs(Math.min(p1.y, p2.y) -Math.max(p3.y, p4.y)),
-			rotation:Math.random()*Math.PI*2,
-			rotationSpeed:Math.random()*.1,
-			r: Math.random()*4 + 1,
-			d: Math.random()* maxParticles
+			width:abs(min(p1.x, p4.x) -max(p2.x, p3.x)),
+			height:abs(min(p1.y, p2.y) -max(p3.y, p4.y)),
+			rotation:rndm()*Math.PI*2,
+			rotationSpeed:rndm()*.1,
+			r: rndm()*4 + 1,
+			d: rndm()* maxParticles
 		});
 	}
 
@@ -55,7 +61,7 @@ p4.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		//ctx.fillStyle = "rgb(255, 0, 255)"; // for the bg (this can be used for debug purposes)
 		//ctx.fillRect(0, 0, canvas.width, canvas.height);
-		ctx.fillStyle = "rgba(255, 255, 255, .8)"; // for the flakes
+		ctx.fillStyle = "rgb(255, 255, 255)"; // for the flakes
 		ctx.beginPath();
 
 		for (var i = 0; i < maxParticles; i++)
@@ -90,8 +96,8 @@ p4.
 		{
 			// update x/y coordinates
 			var p = particles[i];
-			xIncrement = Math.sin(angle +p.d *.5);
-			yIncrement = Math.cos(angle+p.d)+1 +p.r *3;
+			xIncrement = sin(angle +p.d *.5);
+			yIncrement = cos(angle+p.d)+1 +p.r *3;
 
 			p.rotation += p.rotationSpeed;
 
@@ -107,26 +113,26 @@ p4.
 			p.pt4.x += xIncrement;
 			p.pt4.y += yIncrement;
 
-			if (p.pt1.x > canvas.width+5 || p.pt1.x +p.width < -5 || Math.min(p.pt1.y, p.pt2.y) > canvas.height+5)
+			if (p.pt1.x > canvas.width+5 || p.pt1.x +p.width < -5 || min(p.pt1.y, p.pt2.y) > canvas.height+5)
 			{
-				p.pt1.x = Math.random()*canvas.width;
+				p.pt1.x = rndm()*canvas.width;
 				p.pt1.y = -p.height *1.5;
 
-				p.pt2.x = p.pt1.x +Math.random()*particleWith +1;
-				p.pt2.y = p.pt1.y -Math.random()*particleWith
+				p.pt2.x = p.pt1.x +rndm()*particleWith +1;
+				p.pt2.y = p.pt1.y -rndm()*particleWith
 
-				p.pt3.x = p.pt2.x +Math.random()*particleWith +1;
-				p.pt3.y = p.pt2.y +Math.random()*particleHeight;
+				p.pt3.x = p.pt2.x +rndm()*particleWith +1;
+				p.pt3.y = p.pt2.y +rndm()*particleHeight;
 
-				p.pt4.x = p.pt3.x -(Math.random()*particleWith +1);
-				p.pt4.y = p.pt3.y +Math.random()*particleWith;
+				p.pt4.x = p.pt3.x -(rndm()*particleWith +1);
+				p.pt4.y = p.pt3.y +rndm()*particleWith;
 
-				p.width = Math.abs(Math.min(p.pt1.x, p.pt4.x) -Math.max(p.pt2.x, p.pt3.x));
-				p.height = Math.abs(Math.min(p.pt1.y, p.pt2.y) -Math.max(p.pt3.y, p.pt4.y));
+				p.width = abs(min(p.pt1.x, p.pt4.x) -max(p.pt2.x, p.pt3.x));
+				p.height = abs(min(p.pt1.y, p.pt2.y) -max(p.pt3.y, p.pt4.y));
 
-				p.r = Math.random()*4 + 1;
-				p.d = Math.random()* maxParticles;
-				p.rotationSpeed = Math.random()*.1;
+				p.r = rndm()*4 + 1;
+				p.d = rndm()* maxParticles;
+				p.rotationSpeed = rndm()*.1;
 			}
 		}
 	}
