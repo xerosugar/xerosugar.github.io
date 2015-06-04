@@ -1,14 +1,17 @@
 'use strict'
 
+var canvasWidth;
+var canvasHeight;
+
 window.onload = function ()
 {
 	// canvas init
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
-	var maxParticles = 50;
+	var maxParticles = 60;
 	var particles = [];
-	var particleWith = 7;
-	var particleHeight = 23;
+	var particleWith = 6;
+	var particleHeight = 20;
 	var rndm = Math.random;
 	var abs = Math.abs;
 	var min = Math.min;
@@ -18,6 +21,9 @@ window.onload = function ()
 
 	canvas.width = canvas.offsetWidth;
 	canvas.height = canvas.offsetHeight;
+
+	canvasWidth = canvas.width;
+	canvasHeight = canvas.height;
 
 /*
          ..p2
@@ -32,8 +38,8 @@ p4.
 
 	for (var i = 0; i < maxParticles; i++)
 	{
-		var startX = rounded( rndm()*canvas.width );
-		var startY = rounded( rndm()*canvas.height );
+		var startX = rounded( rndm()*canvasWidth );
+		var startY = rounded( rndm()*canvasHeight );
 
 		var p1 = {x:startX,  y:startY};
 		var p2 = {x:rounded( p1.x +rndm()*particleWith +1  ),     y:rounded( p1.y -rndm()*particleWith   )};
@@ -59,9 +65,9 @@ p4.
 	// draws the particles
 	function draw()
 	{
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 		//ctx.fillStyle = "rgb(255, 0, 255)"; // for the bg (this can be used for debug purposes)
-		//ctx.fillRect(0, 0, canvas.width, canvas.height);
+		//ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 		ctx.fillStyle = "rgb(255, 255, 255)"; // for the flakes
 		ctx.beginPath();
 
@@ -69,10 +75,10 @@ p4.
 		{
 			var p = particles[i];
 
-			//ctx.save();
-			//ctx.translate(rounded(p.pt1.x +p.width*.5), rounded(p.pt2.y +p.height*.5));
-			//ctx.rotate(rounded(p.rotation));
-			//ctx.translate(rounded(-(p.pt1.x +p.width*.5)), rounded(-(p.pt2.y +p.height*.5)));
+			ctx.save();
+			ctx.translate(rounded(p.pt1.x +p.width*.5), rounded(p.pt2.y +p.height*.5));
+			ctx.rotate(rounded(p.rotation));
+			ctx.translate(rounded(-(p.pt1.x +p.width*.5)), rounded(-(p.pt2.y +p.height*.5)));
 
 			ctx.moveTo(rounded(p.pt1.x), rounded(p.pt1.y));
 			ctx.lineTo(rounded(p.pt2.x), rounded(p.pt2.y));
@@ -80,7 +86,7 @@ p4.
 			ctx.lineTo(rounded(p.pt4.x), rounded(p.pt4.y));
 			ctx.fill();
 
-			//ctx.restore();
+			ctx.restore();
 		}
 
 		update();
@@ -114,9 +120,9 @@ p4.
 			p.pt4.x += xIncrement;
 			p.pt4.y += yIncrement;
 
-			if (p.pt1.x > canvas.width+5 || p.pt1.x +p.width < -5 || min(p.pt1.y, p.pt2.y) > canvas.height+5)
+			if (p.pt1.x > canvasWidth+5 || p.pt1.x +p.width < -5 || min(p.pt1.y, p.pt2.y) > canvasHeight+5)
 			{
-				p.pt1.x = rndm()*canvas.width;
+				p.pt1.x = rndm()*canvasWidth;
 				p.pt1.y = -p.height *1.5;
 
 				p.pt2.x = p.pt1.x +rndm()*particleWith +1;
@@ -146,6 +152,6 @@ p4.
 
 window.onresize = function () {
 	//var canvas = document.getElementById("canvas");
-	canvas.width = document.getElementById("canvas").offsetWidth;
-	canvas.height = document.getElementById("canvas").offsetHeight;
+	canvasWidth = document.getElementById("canvas").offsetWidth;
+	canvasHeight = document.getElementById("canvas").offsetHeight;
 };
