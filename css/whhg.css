@@ -8,7 +8,11 @@
     -moz-font-feature-settings: "calt=0,liga=0";
 }
 [class^="icon-"], [class*=" icon-"] {font-family:'WebHostingHub-Glyphs';background:none;width:auto;height:auto;font-style:normal}
-.icon-aaabattery:before{content:'\f413'}
+.icon-circlefacebook:before{content:'\f78d'}
+.icon-circleinstagram:before{content:'\f7c4'}
+.icon-home:before{content:'\21b8'}
+
+/*.icon-aaabattery:before{content:'\f413'}
 .icon-abacus:before{content:'\f261'}
 .icon-accountfilter:before{content:'\f05e'}
 .icon-acsource:before{content:'\f3ea'}
@@ -508,7 +512,9 @@
 .icon-helicopter:before{content:'\f3e4'}
 .icon-hexagon-polygon:before{content:'\f1be'}
 .icon-hockey:before{content:'\f3d9'}
-.icon-home:before{content:'\21b8'}
+
+
+
 .icon-homealt:before{content:'\f02b'}
 .icon-hospital:before{content:'\f247'}
 .icon-hotdog:before{content:'\f3cc'}
@@ -1980,7 +1986,6 @@
 .icon-zerply:before{content:'\f78a'}
 .icon-circlegoogleplus:before{content:'\f78b'}
 .icon-circletwitter:before{content:'\f78c'}
-.icon-circlefacebook:before{content:'\f78d'}
 .icon-circleyahoo:before{content:'\f78e'}
 .icon-circlegithub:before{content:'\f78f'}
 .icon-forumsalt:before{content:'\f790'}
@@ -2035,7 +2040,6 @@
 .icon-photonineframes:before{content:'\f7c1'}
 .icon-wetfloor:before{content:'\f7c2'}
 .icon-instagramfour:before{content:'\f7c3'}
-.icon-circleinstagram:before{content:'\f7c4'}
 .icon-videocamerathree:before{content:'\f7c5'}
 .icon-subtitles:before{content:'\f7c6'}
 .icon-subtitlesoff:before{content:'\f7c7'}
@@ -2083,3 +2087,4 @@
 .icon-fontcaligraphy:before{content:'\f7f1'}
 .icon-fontgothic:before{content:'\f7f2'}
 .icon-fontstencil:before{content:'\f7f3'}
+*/
