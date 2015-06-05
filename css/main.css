@@ -100,9 +100,9 @@ textarea {
 .snow {
     background-image: url('../img/coco1.png'), url('../img/coco2.png'), url('../img/coco3.png');
     z-index:-100;
-    -webkit-animation: snow 2s linear infinite;
-    -moz-animation: snow 2s linear infinite;
-    -ms-animation: snow 2s linear infinite;
+    -webkit-animation: snow 10s linear infinite;
+    -moz-animation: snow 10s linear infinite;
+    -ms-animation: snow 10s linear infinite;
     animation: snow 10s linear infinite;
 }
 
@@ -179,6 +179,14 @@ article section {
         margin-bottom: 7%;
     }
 
+    canvas {
+        visibility: hidden;
+    }
+
+    .snow {
+        background-image: url('../img/coco1.png'), url('../img/coco2.png'), url('../img/coco3.png');
+    }
+
 }
 
 @media only screen and (min-width: 1140px) {
@@ -197,6 +205,14 @@ article section {
 
     h1 {
         font-size: 2em;
+    }
+
+    canvas {
+        visibility: visible;
+    }
+
+    .snow {
+        background-image: none;
     }
 }
 
