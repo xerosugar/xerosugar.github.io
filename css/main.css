@@ -181,7 +181,6 @@ article section {
 
     canvas {
         visibility: hidden;
-        height: 0;
     }
 }
 
