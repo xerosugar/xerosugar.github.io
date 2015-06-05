@@ -182,11 +182,6 @@ article section {
     canvas {
         visibility: hidden;
     }
-
-    .snow {
-        background-image: url('../img/coco1.png'), url('../img/coco2.png'), url('../img/coco3.png');
-    }
-
 }
 
 @media only screen and (min-width: 1140px) {
@@ -209,10 +204,6 @@ article section {
 
     canvas {
         visibility: visible;
-    }
-
-    .snow {
-        background-image: none;
     }
 }
 
