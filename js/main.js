@@ -68,6 +68,7 @@ p4.
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 		//ctx.fillStyle = "rgb(255, 0, 255)"; // for the bg (this can be used for debug purposes)
 		//ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+		
 		ctx.fillStyle = "rgb(255, 255, 255)"; // for the flakes
 		ctx.beginPath();
 

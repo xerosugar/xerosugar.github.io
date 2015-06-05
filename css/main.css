@@ -204,7 +204,6 @@ article section {
 
     canvas {
         visibility: visible;
-        height: 100%;
     }
 }
 
@@ -212,6 +211,7 @@ canvas {
     position: absolute;
     z-index: -100;
     width: 80%;
+    height: 56em;
     max-width: 35em;
     padding-top: 10px;
 }
